@@ -1,1 +1,0 @@
-{% extends 'shop/base.html' %}{% block content %}<section class="success-card"><div class="success-icon">✓</div><h1>سفارش شما ثبت شد</h1><p>شماره سفارش: <b>#{{ order.id }}</b></p><p>برای هماهنگی پرداخت و ارسال، فروشگاه با شما تماس خواهد گرفت.</p><a class="btn" href="{% url 'shop:home' %}">بازگشت به فروشگاه</a></section>{% endblock %}
