@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="hero">
+    <h1>قطعه مناسب را با اطمینان پیدا کنید</h1>
+    <p>فروشگاه تخصصی برق و الکترونیک خودرو گلشن</p>
+</div>
+
+<h2 class="section-title">دسته‌بندی قطعات</h2>
+<div class="cat-grid">
+    {% for cat in categories %}
+    <a href="#" class="cat-card">
+        <div style="font-size: 30px; margin-bottom: 10px;">⚙️</div>
+        <span>{{ cat.name }}</span>
+    </a>
+    {% empty %}
+    <div class="cat-card"><span>دینام و استارت</span></div>
+    <div class="cat-card"><span>سنسورها</span></div>
+    <div class="cat-card"><span>سیستم روشنایی</span></div>
+    {% endfor %}
+</div>
+
+<h2 class="section-title">جدیدترین محصولات</h2>
+<div class="prod-grid">
+    {% for product in products %}
+    <div class="prod-card">
+        <a href="{% url 'product_detail' product.slug %}">
+            <div class="prod-img">
+                {% if product.main_image %}
+                    <img src="{{ product.main_image.url }}" alt="{{ product.name }}">
+                {% else %}
+                    <i class="fa-solid fa-image" style="font-size: 40px; color: #cbd5e1;"></i>
+                {% endif %}
+            </div>
+        </a>
+        <div class="prod-info">
+            <a href="{% url 'product_detail' product.slug %}"><h3 class="prod-title">{{ product.name }}</h3></a>
+            <div class="prod-price">{{ product.final_price }} تومان</div>
+            <a href="{% url 'add_to_cart' product.id %}" class="btn-add" style="display:block; text-align:center;">افزودن به سبد</a>
+        </div>
+    </div>
+    {% empty %}
+    <p>هنوز محصولی ثبت نشده است. از پنل ادمین محصول اضافه کنید.</p>
+    {% endfor %}
+</div>
+{% endblock %}
